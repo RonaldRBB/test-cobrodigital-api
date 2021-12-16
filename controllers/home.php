@@ -22,8 +22,6 @@ namespace TCD\controllers;
  */
 function homeGet()
 {
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-        \TCD\functions\denyAccess();
-    }
+    $_SERVER['REQUEST_METHOD'] !== 'GET' ? \TCD\functions\denyAccess() : null;
     echo "Hello World";
 }

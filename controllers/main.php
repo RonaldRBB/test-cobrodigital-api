@@ -22,9 +22,15 @@ namespace TCD\controllers;
  */
 function main()
 {
-    if ($_SERVER["REQUEST_URI"] == "/home") {
-        \TCD\controllers\homeGet();
-    } else {
-        \TCD\functions\denyAccess();
+    switch ($_SERVER['REQUEST_URI']) {
+        case "/home":
+            \TCD\controllers\homeGet();
+            break;
+        case "/cobranzas":
+            \TCD\controllers\collectionsGet();
+            break;
+        default:
+            \TCD\functions\denyAccess();
+            break;
     }
 }

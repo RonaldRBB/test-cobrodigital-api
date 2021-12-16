@@ -16,8 +16,10 @@
  * -----------------------------------------------------------------------------
  */
 require_once($_SERVER['DOCUMENT_ROOT'] . "/src/functions.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/src/classes/collection.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/controllers/main.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/controllers/home.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/controllers/collections.php");
 /**
  * Denegar acceso al archivo directamente
  * -----------------------------------------------------------------------------
@@ -28,4 +30,5 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/controllers/home.php");
  * -----------------------------------------------------------------------------
  * Ejecución.
  */
+$config = include_once($_SERVER['DOCUMENT_ROOT'] . "/config/config.php");
 \TCD\controllers\main();
