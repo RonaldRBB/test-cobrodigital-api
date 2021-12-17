@@ -20,12 +20,26 @@ namespace TCD\controllers;
  *
  * @return void
  */
-function collectionsGet()
+function collectionsDataGet()
 {
-    global $config;
-    $_SERVER["REQUEST_METHOD"] !== "GET" ? \TCD\functions\denyAccess() : null;
-    $fileDir0 = $_SERVER["DOCUMENT_ROOT"] . "/resources/" . $config["collectionFile"];
-    $fileDir1 = $_SERVER["DOCUMENT_ROOT"] . "/resources/" . $config["reversalFile"];
-    $fileDir2 = $_SERVER["DOCUMENT_ROOT"] . "/resources/" . $config["888File"];
-    $collection = new \TCD\classes\Collection($fileDir0);
+    $resourcesDir = $_SERVER["DOCUMENT_ROOT"] . "/resources";
+    $files = array_slice(scandir($resourcesDir), 2);
+    $collections = [];
+    foreach ($files as $file) {
+        if (strpos($file, "REV") === false) {
+            $collection = new \TCD\classes\Collection($resourcesDir, $file);
+            $collection->parseData();
+            $collections[] = [
+                "fileName" => $file,
+                "totalAmount" => $collection->totalAmount,
+                "totalRecords" => $collection->totalRecords,
+                "averageAmount" => $collection->getAverage(),
+                "totalByPaymentMethod" => $collection->getTotalByPaymentMethod(),
+                "data" => $collection->data,
+            ];
+        }
+    }
+    header("Access-Control-Allow-Origin: *");
+    header('Content-Type: application/json');
+    echo json_encode($collections);
 }

@@ -23,11 +23,8 @@ namespace TCD\controllers;
 function main()
 {
     switch ($_SERVER['REQUEST_URI']) {
-        case "/home":
-            \TCD\controllers\homeGet();
-            break;
-        case "/cobranzas":
-            \TCD\controllers\collectionsGet();
+        case "/datos_cobranzas":
+            \TCD\controllers\collectionsDataGet();
             break;
         default:
             \TCD\functions\denyAccess();
