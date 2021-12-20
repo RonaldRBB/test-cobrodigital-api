@@ -23,7 +23,7 @@ namespace TCD\controllers;
 function main()
 {
     switch ($_SERVER['REQUEST_URI']) {
-        case "/datos_cobranzas":
+        case "/datoscobranzas":
             \TCD\controllers\collectionsDataGet();
             break;
         default:

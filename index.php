@@ -11,5 +11,5 @@
  * @link     https://ronaldrbb.github.io/RonaldRBB/
  */
 
-header("Location: /home");
+header("Location: /datoscobranzas");
 exit();
